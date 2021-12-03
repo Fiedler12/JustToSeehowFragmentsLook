@@ -116,6 +116,7 @@ class FirstFragment : Fragment() {
                 statusMessage.text = "You lose a life.. Spin again"
                 app.game.health--
                 health.text = app.game.health.toString()
+                checkLose()
             }
         }
     }
