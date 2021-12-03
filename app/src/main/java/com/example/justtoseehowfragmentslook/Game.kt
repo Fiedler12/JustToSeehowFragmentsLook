@@ -6,12 +6,13 @@ class Game {
     var health: Int
     var gameIsActive: Boolean
     var word: Word
+    val wordOptions: MutableList<String> = mutableListOf("FURTHER", "KITCHEN", "AMERICAN", "SATISFACTION", "BEAUTIFUL", "BOUQUET", "DISGUISE", "GENERATION")
 
     init {
         gameState = GameState.SPIN
         points = 0
         gameIsActive = true
         health = 5
-        word = Word("FURTHER")
+        word = Word(wordOptions[(0..wordOptions.size).random()])
     }
 }

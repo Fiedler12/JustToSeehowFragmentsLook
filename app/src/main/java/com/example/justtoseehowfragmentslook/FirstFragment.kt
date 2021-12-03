@@ -108,12 +108,12 @@ class FirstFragment : Fragment() {
                 statusMessage.text = "You will get 3000 points for a correct consonant! Please guess."
             }
             9 -> {
-                statusMessage.text = "You get an ekstra life!"
+                statusMessage.text = "You get an ekstra life! Spin again."
                 app.game.health++
                 health.text = app.game.health.toString()
             }
             10 -> {
-                statusMessage.text = "You lose a life.."
+                statusMessage.text = "You lose a life.. Spin again"
                 app.game.health--
                 health.text = app.game.health.toString()
             }
@@ -135,11 +135,13 @@ class FirstFragment : Fragment() {
         if (correctCounter > 0) {
             app.game.points = app.game.points + pointsForGuess * correctCounter
             points.text = app.game.points.toString()
-            giveMessage(guessChar.toString() + " is in the word.")
+            giveMessage(guessChar.toString() + " is in the word. Please spin")
+            checkWin()
         } else {
             app.game.health--
             health.text = app.game.health.toString()
-            giveMessage(guessChar.toString() + " is not in this word. You lose one HP.")
+            giveMessage(guessChar.toString() + " is not in this word. You lose one HP. Spin.")
+            checkLose()
         }
         update()
     }
@@ -150,6 +152,26 @@ class FirstFragment : Fragment() {
         val dataSet = app.game.word.charList
         recyclerView.adapter = DataAdapter(dataSet)
     }
+
+    fun checkWin() {
+        var allGuessed: Boolean = true
+        for(i in 0..app.game.word.charList.size-1) {
+            if (app.game.word.charList[i].isShown == false) {
+                allGuessed = false
+                break
+            }
+        }
+            if(allGuessed) {
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
+    }
+
+    fun checkLose() {
+        if(app.game.health <= 0) {
+            findNavController().navigate(R.id.action_FirstFragment_to_LoseFragment)
+        }
+    }
+
 
 
     fun giveMessage(message: String) {

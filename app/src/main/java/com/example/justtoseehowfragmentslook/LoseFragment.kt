@@ -8,14 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.example.justtoseehowfragmentslook.databinding.FragmentLoseBinding
 import com.example.justtoseehowfragmentslook.databinding.FragmentSecondBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class LoseFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentLoseBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,23 +26,23 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentLoseBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val playAgainBtn = getView()?.findViewById(R.id.win_play_again) as Button
+        val playAgainBtn = getView()?.findViewById(R.id.lose_play_again) as Button
         playAgainBtn.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
+
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
 }

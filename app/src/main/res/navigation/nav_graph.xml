@@ -14,15 +14,29 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_LoseFragment"
+            app:destination="@id/LoseFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.justtoseehowfragmentslook.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_win">
+        tools:layout="@layout/fragment_second">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoseFragment"
+        android:name="com.example.justtoseehowfragmentslook.LoseFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_lose">
+
+        <action
+            android:id="@+id/action_LoseFragement_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
